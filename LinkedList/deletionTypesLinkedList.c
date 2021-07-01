@@ -16,6 +16,7 @@ void traversalList(struct node *head)
     printf("NULL\n");
 }
 
+
 struct node *deletingHead(struct node *head)
 {
     struct node *p = head;
@@ -33,6 +34,7 @@ struct node *deleteInBetween(struct node *head, int index)
     {
         p = p->next;
         t = t->next;
+        i++;
     }
     p->next = t->next;
     free(t);
@@ -42,9 +44,34 @@ struct node *deleteInBetween(struct node *head, int index)
 struct node *deletingTail(struct node *head)
 {
     struct node *p = head;
-    while(p->next)
+    struct node *q = head->next;
+    while(q->next)
+    {
         p = p->next;
-    struct node *t = p;
+        q = q->next;
+    }
+    p->next = q->next;
+    free(q);
+    return head;
+}
+
+// Delete a particular value from linked list
+struct node *deleteValue(struct node *head, int value)
+{
+    struct node *p = head;
+    struct node *t = head->next;
+
+    while(t->data != value && t->next != NULL)
+    {
+        p = p->next;
+        t = t->next;
+    }
+
+    if(t->data == value)
+    {
+        p->next = t->next;
+    }
+    free(t);
     return head;
 }
 
@@ -75,7 +102,8 @@ int main()
     traversalList(head);
     // head = deletingHead(head);
     // head = deletingTail(head);
-    head = deleteInBetween(head, 2);
+    // head = deleteInBetween(head, 1);
+    head = deleteValue(head, 2);
     traversalList(head);    
     return 0;
 }
