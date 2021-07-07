@@ -47,6 +47,18 @@ int pop(struct stack *s)
        
 }
 
+int peek(struct stack *s, int i)
+{
+    int arrInd = s->top - i + 1;
+    if(arrInd < 0)
+    {
+        printf("Invalid Position!");
+        return -1;
+    }
+    else return (s->arr[arrInd]);
+
+}
+
 int main()
 {
     struct stack *s = (struct stack*)malloc(sizeof(struct stack));
@@ -68,6 +80,12 @@ int main()
 
     printf("Popped %d from the stack.\n", pop(s));
     printf("Popped %d from the stack.\n", pop(s));
+    
+    for(int j = 1; j <= s->top + 1; j++)
+    {
+        printf("The element at index %d in stack is %d.\n", j, peek(s, j));
+    }
+    
     
     return 0;
 }
