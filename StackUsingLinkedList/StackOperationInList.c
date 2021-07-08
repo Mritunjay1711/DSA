@@ -51,13 +51,34 @@ int pop(struct node **top)
     return data;
 }
 
-void peek(struct node *top, int index)
+int peek(struct node *top, int index)
 {
-    for(int i = 1; i < index; i++)
+    struct node *p = top;
+    for(int i = 0; (i < index - 1 && p != NULL); i++)
     {
-        top = top->next;
+        p = p->next;
     }
-    printf("%d\n", top->data);
+    if(p != NULL)
+    {
+        return p->data;
+    }
+    else return -1;
+    
+}
+
+int stackTop(struct node *top)
+{
+    return top->data;
+}
+
+int stackBottom(struct node *top)
+{
+    struct node *p = top;
+    while(p->next)
+    {
+        p = p->next;
+    }
+    return p->data;
 }
 
 int main()
@@ -71,7 +92,12 @@ int main()
     top = push(top, 9);
     top = push(top, 23);
     printf("%d is popped element.\n", pop(&top));
-    peek(top, 5);
-    printf("Empty: %d\n", isEmpty(top));
+
+    for(int i = 1; i <= 5; i++)
+    {
+        printf("The element at %d index is %d.\n", i, peek(top, i));
+    }
+    printf("The element at top is %d.\n", stackTop(top));
+    printf("The element at bottom is %d.\n", stackBottom(top));
     return 0;
 }
