@@ -28,7 +28,7 @@ void bubbleSort(int *A, int n)
 
 int main()
 {
-    int A[] = {12, 54, 64, 7, 23, 9};
+    int A[] = {12, 54, 64, 2, 32, 9};
     int n = 6;
     printArray(A, n);
     bubbleSort(A, n);
