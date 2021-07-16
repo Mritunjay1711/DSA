@@ -32,6 +32,7 @@ int main()
     int n = 6;
     printArray(A, n);
     bubbleSort(A, n);
-    printArray(A, n);    
+    printArray(A, n);
+    printArray(A, n);        
     return 0;
 }
