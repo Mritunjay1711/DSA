@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "C:\\Users\\KIIT\\AppData\\Local\\Microsoft\\WindowsApps\\python3.9.exe"
+    "python.pythonPath": "C:\\Users\\KIIT\\AppData\\Local\\Microsoft\\WindowsApps\\python3.9.exe",
+    "editor.fontLigatures": true
 }
