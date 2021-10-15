@@ -1,89 +1,39 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-typedef struct node{
-    int data;
-    struct node *next;
-}node;
-
-void createList(node **head, int data)
-{
-    node *r = *head, *ptr;
-    if(r == NULL)
-    {
-        r = (node*)malloc(sizeof(node));
-        r->data = data;
-        r->next = NULL;
-        *head = r;
-    }
-    else
-    {
-        while(r->next)
-            r = r->next;
-        ptr = (node*)malloc(sizeof(node));
-        ptr->data = data;
-        ptr->next = NULL;
-        r->next = ptr;
-    }
-}
-
-void traversal(node *head)
-{
-    while (head)
-    {
-        printf("%d-->", head->data);
-        head = head->next;
-    }
-    printf("NULL\n");
-    
-}
-
-void printExCancel( node* head, node **newList )
-{
-    node* start = head;
-    node* end;
-
-    while ( start )
-    {
-        int mod = 0;
-        int sum = 0;
-        end = start;
-        while ( end )
-        {
-            sum += end->data;
-            if ( sum == 0 )
-            {
-                start = end;
-                mod = 1;
-                break;
-            }
-            end = end->next;
-        }
-        if ( mod == 0 ) {
-            createList(newList, start->data);
-        }
-        start = start->next;
-    }
-}
 
 int main()
 {
-    node* head = NULL, *newList;
-    int a, data;
-
-    printf("Enter the number of nodes: ");
-    scanf("%d", &a);
-
-    for(int i = 1; i <= a; i++)
+    int arr[100], flag = 1, n, l = 0;
+    printf("Enter the number: ");
+    scanf("%d", &n);
+    for(int i = 2; i <= n; i++)
     {
-        printf("Enter the data for the node: ");
-        scanf("%d", &data);
-        createList(&head, data);
+        flag = 1;
+        for(int j = 2; j <= i/2; j++)
+        {
+            if(i%j == 0)
+            {
+                flag = 0;
+                break;
+            }
+        }
+        if(flag)
+            arr[l++] = i;
     }
-    
-
-    traversal(head);
-    printExCancel(head, &newList);
-    traversal(newList);
+    for(int i = 0; i < l; i++)
+    {
+        flag = 1;
+        for(int j = i + 1; j < l; j++)
+        {
+            if(arr[i]+arr[j] == n)
+            {
+                printf("%d %d\n", arr[i], arr[j]);
+                flag = 0;
+            }
+        }
+        if(!flag)
+            break;
+    }
     return 0;
 }
