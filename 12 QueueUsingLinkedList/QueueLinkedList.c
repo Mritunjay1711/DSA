@@ -11,7 +11,7 @@ int isEmpty(struct node *f)
     return f == NULL;
 }
 
-int isFull(struct node *f)
+int isFull()
 {
     struct node *n = (struct node*)malloc(sizeof(struct node));
     return (n == NULL);
@@ -38,24 +38,22 @@ void enqueue(struct node **f, struct node **r, int data)
             (*r)->next = n;
             *r = n;
         }
+        printf("%d enqueued!\n", data);
     }
 }
 
-int dequeue(struct node **f)
+void dequeue(struct node **f)
 {
-    int val = -1;
     struct node *ptr = *f;
     if(isEmpty(*f))
     {
         printf("Queue Underflow!\n");
-        return val;
     }
     else
     {
         *f = (*f)->next;
-        val = ptr->data;
+        printf("%d dequeued!\n", ptr->data);
         free(ptr);
-        return val;
     }   
 }
 
@@ -72,16 +70,50 @@ void traversal(struct node *f)
 int main()
 {
     struct node *f = NULL,*r = NULL;
-    enqueue(&f, &r, 3);
-    enqueue(&f, &r, 4);
-    enqueue(&f, &r, 5);
-    enqueue(&f, &r, 6);
-    enqueue(&f, &r, 7);
-    printf("%d is dequeued!\n", dequeue(&f));
-    traversal(f);
-    printf("%d is dequeued!\n", dequeue(&f));
-    printf("%d is dequeued!\n", dequeue(&f));
-    enqueue(&f, &r, 9);
-    traversal(f);
+    int a;
+    do
+    {
+        printf("Enter\n1 for checking empty or not\n2 for checking full or not\n3 for Display the elements\n4 for Enqueue\n5 for Dequeue\n0 to exit\n");
+        scanf("%d", &a);
+
+        switch (a)
+        {
+        case 1:
+        {
+            if(isEmpty(f))
+                printf("Queue is empty!\n");
+            else
+                printf("Queue is not empty!\n");
+            break;
+        }
+        case 2:
+        {
+            if(isFull())
+                printf("Queue is Full!\n");
+            else
+                printf("Queue is not Full!\n");
+            break;
+        }
+        case 3:
+        {
+            traversal(f);
+            break;
+        }
+        case 4:
+        {
+            int data;
+            printf("Enter the data to enqueue: ");
+            scanf("%d", &data);
+            enqueue(&f, &r, data);
+            break;
+        }
+        case 5:
+        {
+            dequeue(&f);
+            break;
+        }
+
+        }
+    }while(a);
     return 0;
 }
