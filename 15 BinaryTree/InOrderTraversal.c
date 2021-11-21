@@ -1,4 +1,4 @@
-// Left-->Right-->Root
+  // Left-->Right-->Root
 #include<stdio.h>
 #include<stdlib.h>
 

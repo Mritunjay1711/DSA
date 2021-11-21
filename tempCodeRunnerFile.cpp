@@ -1,10 +1,26 @@
-#include <iostream>
-#include<cstring>
+#include<iostream>
 using namespace std;
+
+class sample
+{
+public:
+    void set_data(char c)
+    {
+        ch = c;
+    }
+    void show_data()
+    {
+        cout << a << " " << ch;
+    }
+private:
+    int a = 10;
+    char ch;
+};
 
 
 int main(){
-    char s[20] = {"hello\0hi"};
-    cout << sizeof(s) << strlen(s);
+    sample s;
+    s.set_data('d');
+    s.show_data();    
     return 0;
 }
