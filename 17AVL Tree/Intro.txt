@@ -1,0 +1,39 @@
+======> Height balanced BST <======
+
+-> Balanced factor = (height of right subtreee - height of left subtree)
+-> For AVL tree |BF| <= 1
+
+--> LL Rotation
+            7
+           /                        5
+          5           ---->        / \  
+         /                        4   7
+        4
+
+--> RR Rotation
+            7
+             \                       9
+              9    ----->           / \
+               \                   7   11
+                11
+
+--> LR Rotation
+         7                7
+        /                /                5
+       4      --->      5   --->         / \
+        \              /                4   7
+         5            4
+         Anti rota    Clock rotation
+
+--> RL Rotation
+        7                7
+         \                \                  10
+          11     -->       10   --->        /  \
+         /                  \              7    11
+        10                   11
+     Clock wise(10)          Anti(7)
+
+
+--> Rotate Operations
+    1. Left rotate wrt a node - Node is moved towards the left
+    2. Right rotate wrt a node - NOde is moved towards the right
