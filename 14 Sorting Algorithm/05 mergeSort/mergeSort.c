@@ -38,8 +38,8 @@ void merge(int *A, int low, int mid, int high)
 {
     int i = low;
     int j = mid + 1;
-    int k = low;
-    int B[100];
+    int k = low, n = high + 1;
+    int *B = (int*)malloc(n * sizeof(int));
 
     
     while (i <= mid && j <= high)
